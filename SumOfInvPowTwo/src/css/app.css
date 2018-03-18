@@ -1,0 +1,10 @@
+.square {
+  fill: #eeeeee;
+  stroke: #000000;
+  stroke-width: 1;
+  /*fill-opacity: 0.0;*/
+}
+
+#svgContainer {
+	max-width: 640px !important;
+}

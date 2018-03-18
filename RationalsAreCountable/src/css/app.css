@@ -1,0 +1,22 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.curve{
+	stroke: #444;
+	fill: none;
+}
+
+.txt{
+	font-size: 16pt;
+}
+
+.type0{
+	stroke: #000;
+	fill: #000;
+}
+
+.type1{
+	stroke: #00c;
+	fill: #00c;
+}

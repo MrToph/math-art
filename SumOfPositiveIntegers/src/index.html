@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Sum of Positive Integers</h1>
+    </header>
+    <div class="math center">$ 1 + 2 + 3 + 4 + \ldots + n = \frac{1}{2} \ n (n+1) $</div>
+    <div id="mathContainer" class="math mathFixedHeight center">
+     \( \)  <!-- empty math s.t. MathJax creates a .jax element  -->
+    </div>
+    <div id="svgContainer" class="center"></div>
+    <div class="stepBtnContainer center">
+      <button type="submit" class="stepBtn leftBtn" id="leftBtn1" data-bla="1" onclick="stepper.onBackward(this.dataset.bla)"></button>
+      <button type="submit" class="stepBtn rightBtn" id="rightBtn1" data-bla="1" onclick="stepper.onForward(this.dataset.bla)"></button>
+    </div>
+  </body>
+</html>

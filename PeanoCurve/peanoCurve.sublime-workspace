@@ -1,0 +1,1293 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"elem",
+				"eleSize (num)"
+			],
+			[
+				"createDa",
+				"createDataRecursive (fn/5)"
+			],
+			[
+				"dra",
+				"dragRectPos ([])"
+			],
+			[
+				"opaci",
+				"opacityDuration"
+			],
+			[
+				"current",
+				"currentStep"
+			],
+			[
+				"curr",
+				"currentStep"
+			],
+			[
+				"squa",
+				"squareOffset"
+			],
+			[
+				"square",
+				"squareSize"
+			],
+			[
+				"dragPo",
+				"dragPointData"
+			],
+			[
+				"N_",
+				"N_phrase_num"
+			],
+			[
+				"func",
+				"function_words_tags"
+			],
+			[
+				"un",
+				"unchanging_plurals_list"
+			],
+			[
+				"tagged",
+				"tagged_words"
+			],
+			[
+				"numb",
+				"numberOfColumns"
+			],
+			[
+				"number",
+				"numberOfRows"
+			],
+			[
+				"ref",
+				"refPoint"
+			],
+			[
+				"middle",
+				"middlePoint"
+			],
+			[
+				"sk",
+				"sk_in_wif"
+			],
+			[
+				"secret",
+				"secretMultiplier"
+			],
+			[
+				"wif",
+				"secretExponentToWif"
+			],
+			[
+				"get",
+				"get_secret_exponent_little_endian"
+			],
+			[
+				"bin",
+				"binascii"
+			],
+			[
+				"secre",
+				"secretMultiplier"
+			],
+			[
+				"r2output",
+				"r2output2bytes"
+			],
+			[
+				"nonce",
+				"nonce2bytes"
+			],
+			[
+				"interpo",
+				"interpolationString"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"preis",
+				"Preis1"
+			],
+			[
+				"selec",
+				"selectedData"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"Grid",
+				"GridController"
+			],
+			[
+				"page",
+				"currentPage"
+			],
+			[
+				"filterText",
+				"filterTextSplits"
+			],
+			[
+				"data",
+				"dataArrived"
+			],
+			[
+				"i",
+				"initialized"
+			],
+			[
+				"def",
+				"deferred"
+			],
+			[
+				"Load",
+				"loadDataService"
+			],
+			[
+				"compareCate",
+				"compareCategoryName"
+			],
+			[
+				"comparedish",
+				"compareDishName"
+			],
+			[
+				"m",
+				"mysql_database"
+			],
+			[
+				"my",
+				"mysql_password"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/js/PeanoCurve.js",
+			"settings":
+			{
+				"buffer_size": 1620,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/Visualization.jsx",
+			"settings":
+			{
+				"buffer_size": 3920,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/vis/css/vis.css",
+			"settings":
+			{
+				"buffer_size": 1597,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/css/app.css",
+			"settings":
+			{
+				"buffer_size": 180,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 1209,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 1999,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 351,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"selected_items":
+		[
+			[
+				"gulp ar",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"npm run",
+				"npm: Run Script"
+			],
+			[
+				"npm r",
+				"npm: Run Script"
+			],
+			[
+				"npm rn",
+				"npm: Run Script"
+			],
+			[
+				"n",
+				"npm: Run Script"
+			],
+			[
+				"npm ",
+				"npm: Run Script"
+			],
+			[
+				"gulp",
+				"Gulp: Run last task"
+			],
+			[
+				"npm instan",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"npm install",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"gul",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp last",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp arb",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp arbi",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"GULP",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp art",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp arbit",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulpo",
+				"Gulp: Show panel"
+			],
+			[
+				"gulp abi",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp ",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp run last",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp lat",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp list",
+				"Gulp: Exit editor killing running tasks"
+			],
+			[
+				"gulp run",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp kill",
+				"Gulp: Kill running tasks"
+			],
+			[
+				"gulp run arb",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"npm instal",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"gulp la",
+				"Gulp: Run last task"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"npm",
+				"npm: Run Script"
+			],
+			[
+				"npm st",
+				"npm: Run Script"
+			],
+			[
+				"npm ru",
+				"npm: Run Script"
+			],
+			[
+				"grunt",
+				"Grunt"
+			],
+			[
+				"run",
+				"npm: Run Script"
+			],
+			[
+				"npm sr",
+				"npm: Run Script"
+			],
+			[
+				"npm install sa",
+				"npm: Install Saved Packages"
+			],
+			[
+				"npm insta",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"package control insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package control list pa",
+				"Package Control: List Packages"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"npm uninstall",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"npm remove",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"packge instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package inta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"package con",
+				"Package Control: Install Package"
+			],
+			[
+				"grun",
+				"Grunt"
+			],
+			[
+				"Grunt",
+				"Grunt"
+			],
+			[
+				"grn",
+				"Grunt"
+			],
+			[
+				"grnut",
+				"Grunt"
+			],
+			[
+				"gr",
+				"Grunt"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"trail",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"pckginsta",
+				"Package Control: Install Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"space",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"tr",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"gru",
+				"Grunt"
+			],
+			[
+				"trai",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"feun",
+				"Preferences: Grunt - Settings – Default"
+			],
+			[
+				"grim",
+				"AngularJS: Toggle - Disable Built-in Element Completions"
+			],
+			[
+				"g",
+				"AngularJS: Toggle - Enable data- Prefix"
+			],
+			[
+				"tra",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"trailin",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"trailing",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"traces",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"package enb",
+				"Package Control: Enable Package"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 510.0
+	},
+	"console":
+	{
+		"height": 234.0,
+		"history":
+		[
+			"npm init",
+			"print('\\n'*100)",
+			"clc",
+			"clear",
+			"npm install -g grunt",
+			"npm install",
+			"dir",
+			"ls",
+			"npm install -g grunt-cli",
+			"import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"clear",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/package.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/src/npm-debug.log",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/node_modules/es6-iterator/valid-iterable.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/src/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/src/build/all.min.js.map",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/webpack.config.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/PeanoCurve/src/js/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/js/HilbertCurve.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/js/app.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/js/Curve.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/gulpfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/js/Visualization.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/vis/css/vis.css",
+		"/C/Users/Christoph/AppData/Local/Temp/scp10426/home/theovitd/public_html/mathart.xyz/math/vis/vis.css",
+		"/C/Users/Christoph/AppData/Local/Temp/scp10250/home/theovitd/public_html/mathart.xyz/math/vis/css/vis.css",
+		"/C/Users/Christoph/AppData/Local/Temp/scp06281/home/theovitd/public_html/mathart.xyz/math/HilbertCurve/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/js/ISteppable.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfSquaredFibonacci/src/js/Visualization.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/HilbertCurve/featured/test.svg",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/PythagoreanTiling/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowThree/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/PythagoreanTiling/gulpfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfSquaredFibonacci/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/js/Visualization.jsx",
+		"/C/Users/Christoph/Dropbox/anderes/MathematicalBeauty/beautiful proofs.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/stringDivision-ifSxNwEhkPER6hExe/stringDivision.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/RandomNumbers-uu6GraiBoeSFwE4Fe/RandomNumbers.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/unshift-S8ErLGALGXkZgNTan/unshift.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FibonacciSort-QczEop25GyKxsRTjJ/FibonacciSort.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/usbAndFile-hMCmr72eyrJBNEdp9/usbAndFile.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/NarcissisticNumber-3eZwiyP6btWXDxohS/NarcissisticNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GenerateCode-GPw6LZT685xxJgnvT/GenerateCode.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/stepOnCrack2-nawzrMCKuMoq5SG3t/stepOnCrack2.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/helptoclone-SZRtfwnjeBTyk9yy5/helptoclone.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/secondLargest-qQ762Pzrgm5KaBMT6/secondLargest.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/changumangu23-hBzGLr7CBfnbNCeex/changumangu23.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/encoding-xmLcAnqyM2ozLB34y/encoding.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/MultipleNumber-sfW9pdqpfDCiasbX6/MultipleNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/labyrinth2-kFWA4ZkJSfvwh4q8d/labyrinth2.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/productTcudorp-P4XeTQi9BJ3H3cm8r/productTcudorp.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/niceSubsets-Z2er7vLukAa2eoJJJ/niceSubsets.jsx",
+		"/C/Users/Christoph/AppData/Local/Temp/Temp1_Azad - Leben II (2016) [320].zip/Get Password.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Truly_Random-WFRx6HvmG5KLABepG/Truly_Random.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/findBiSlice-n75eG9MuhDzejuCyp/findBiSlice.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/nextNumber-fE4DJSQmFQEWrdYwp/nextNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/BirdsLanguage-we7jqYhFEKNMmYxpN/BirdsLanguage.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/app.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/LadderGraph-gNBpsy8fob9TypF3q/LadderGraph.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/sumones-YYCWR4F7tXHpkBdsg/sumones.jsx",
+		"/C/Users/Christoph/Dropbox/anderes/blender-shortcuts.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/EvenNumbers-4HANW3Rbjcs9TZmMM/EvenNumbers.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/phantom.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Fact-Sm7TY2JehkZXr8zr2/Fact.jsx",
+		"/C/Users/Christoph/Desktop/hearth-db-master/public/index.html",
+		"/D/backups/wordpress-themes/hyperx-child/single-royal_portfolio.php",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/LongMatrixProduct-rE6wJbeZB3vA8KADt/LongMatrixProduct.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FlipCup-kZJAxKBZkaWL7yGEt/FlipCup.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Consensus-QpYRXWaeoopy5u6JZ/Consensus.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/MissingTerm-3j5Zd3nRMjghZttP2/MissingTerm.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/PeriodicRows-uPYiZqNFE3n2LiLpg/PeriodicRows.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/triplet-ab5C54f7rRwYZAn38/triplet.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/PeriodicRows-uPYiZqNFE3n2LiLpg/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GalaxyAZ-a9NhJYdzoBBPnxMJs/GalaxyAZ.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/fifteen_game-DRDeYmmEGQMQNsJyb/fifteen_game.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/fifteen_game-DRDeYmmEGQMQNsJyb/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/conversion-CJjYQBCnP73Noq6Cg/conversion.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FactorialSum-yhN2jyWsWDTWA4qnW/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FactorialSum-yhN2jyWsWDTWA4qnW/FactorialSum.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GalaxyAZ-a9NhJYdzoBBPnxMJs/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/project.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfFibonacci/sumOfFibonacci.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowThree/src/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/Test/test.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/DataStructures/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/src/js/Visualization.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowThree/gulpfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowThree/sumOfInvPowThree.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/src/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/Pythagoras/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/src/js/ISteppable.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/WebDevelopment - Shortcut.lnk",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/sumOfInvPowFour.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowFour/sumOfOdd2.sublime-project",
+		"/C/Users/Christoph/AppData/Local/Temp/scp12946/home/theovitd/public_html/mathart.xyz/wp-content/themes/hyperx-child/single-royal_portfolio.php",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/anderes/homepageideen.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfPositiveIntegers3/src/js/visualization.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/js/ISteppable.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/build/all.min.js.map",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfPositiveIntegers3/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/.sublime-grunt.cache",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/npm-debug.log.2030549018",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/gruntfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/eslintrc.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd/.eslintrc",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/node_modules/eslint-config-standard/eslintrc.json",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/node_modules/eslint-config-semistandard/eslintrc.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/node_modules/semistandard/eslintrc.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/node_modules/eslint-config-standard-jsx/eslintrc.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/node_modules/semistandard/package.json",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/.jshintrc",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/sumOfOdd2.sublime-project",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/User/StandardFormat.sublime-settings",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/js/app.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/src/js/visualization.jsx",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Installed Packages/SublimeLinter-contrib-semistandard.sublime-package",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/StandardFormat/StandardFormat.sublime-settings",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/StandardFormat/Default (Windows).sublime-keymap",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/StandardFormat/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/.tern-project",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/tern_for_sublime/Tern.sublime-settings",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfOdd2/package.json",
+		"/C/Users/Christoph/Downloads/MathJax-master/config/TeX-MML-AM_CHTML.js",
+		"/C/Users/Christoph/AppData/Local/Temp/scp19566/home/theovitd/public_html/mathart.xyz/math/vis/js/mathjaxConfig",
+		"/C/Users/Christoph/AppData/Local/Temp/scp35169/home/theovitd/public_html/mathart.xyz/math/vis/js/mathjaxConfig.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfSquares/src/css/app.css",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfSquares/src/js-compiled/visualization-compiled.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/Pythagoras/src/index.html"
+	],
+	"find":
+	{
+		"height": 57.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#32",
+			"HilbertCurve",
+			"this.curve",
+			".triangle",
+			"dragRectData",
+			"dragRect",
+			"dragpoint",
+			"radius",
+			"conditionalAdd",
+			"numOdd",
+			"numEven",
+			"var ",
+			"max",
+			"from",
+			"ni",
+			"oi",
+			"arr",
+			"newest",
+			"oldest",
+			"min",
+			"rec",
+			"end",
+			"start",
+			"row0",
+			"inversions",
+			"this.textData",
+			"textData",
+			"this.texts",
+			"this.groups",
+			"hilbert",
+			"sin",
+			"d => d.layer ===",
+			"mouse",
+			"boxdot",
+			"groupData",
+			"px",
+			"outline-offset",
+			"mailchimp",
+			"stepper",
+			"curly",
+			"c",
+			"curly",
+			"onComplete",
+			"onStep",
+			"Boxgeome",
+			"color",
+			"0xffffff",
+			"redraw",
+			"onStep",
+			".onStep",
+			"translate",
+			"{\n",
+			"_this.points\\[",
+			"_this.points[",
+			"\n  g.transition().ease('linear').duration(3000).attr('transform', 'translate(800, 400)')\n              .each(\"end\", function() {   \n                h.transition().ease('linear').duration(4000).attrTween(\"transform\", function() { \n                  var interpolater = d3.interpolate(0, 360); \n                  return function(t) { return \"rotate(\" + interpolater(t) + \")\" }\n                }); \n              });",
+			"bind",
+			"b",
+			"bind",
+			"clamp",
+			"cx",
+			"\"></",
+			"graphdraw",
+			"lmlicenses",
+			"%",
+			"\\$",
+			"$",
+			"%",
+			"\\$",
+			"$",
+			"TAS",
+			"I/GameAna",
+			"analytics:",
+			"resource",
+			"GameAnalytics",
+			"MainMenu",
+			"jewel",
+			".*\\n",
+			"*.\\n",
+			"return",
+			"if match:",
+			"\",",
+			".*\\n",
+			"eats\n",
+			"eats",
+			"twitch",
+			"tW",
+			"scale",
+			"colMeans",
+			"svd(",
+			"apply",
+			"repeat",
+			"kmeans",
+			"kp_rightarrow",
+			"for",
+			"ZZZ",
+			"sln",
+			"zzz",
+			"`kategorien",
+			"kategorien",
+			"gerichte",
+			"essen",
+			"Essen",
+			"php",
+			"p",
+			"php",
+			"favic",
+			"3.6rem",
+			"2.0rem",
+			"red",
+			"click",
+			"graphanimation",
+			"getSVGHTML",
+			"$scope.path",
+			"-2",
+			"overlap",
+			"inkscape:connector-curvature=\"0\" ",
+			"inkscape:connector-curvature=\"0\"",
+			"sodipodi:nodetypes=",
+			"stroke-dashoffset:0px;",
+			"stroke-width:0.6px;color:rgb(0, 0, 0);",
+			"animate ",
+			"v",
+			"form",
+			"1",
+			"\"#",
+			"#",
+			")",
+			"#"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"PeanoCurve",
+			"this.currentCurve",
+			"ratio",
+			"a",
+			"o",
+			"e",
+			"",
+			"y",
+			"f",
+			"n",
+			"m",
+			"a",
+			"n",
+			"o",
+			"v",
+			"r",
+			"e",
+			"s",
+			"r",
+			"v",
+			"this.outerData",
+			"this.outer",
+			"this.elements",
+			"_this.idToPoint(",
+			"[/latex]",
+			"[latex]",
+			"[/latex]",
+			"[latex]",
+			"stem =",
+			"if stem == \"\" and match:",
+			"`Kategorien",
+			"Kategorien",
+			"Gerichte",
+			"Essen",
+			"5.0rem",
+			"3.0rem",
+			"",
+			"./js/lib/slickgrid/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/js/PeanoCurve.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1620,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1620
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/Visualization.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								566,
+								566
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 54.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/vis/css/vis.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1597,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								189,
+								189
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/css/app.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								86,
+								86
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1999,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								869,
+								869
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								179,
+								179
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 155.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.gulp_output":
+	{
+		"height": 128.0
+	},
+	"output.textarea":
+	{
+		"height": 128.0
+	},
+	"project": "peanoCurve.sublime-project",
+	"replace":
+	{
+		"height": 98.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"visual",
+				"src\\js\\Visualization.jsx"
+			],
+			[
+				"grid",
+				"src\\js\\gridController.js"
+			],
+			[
+				"color",
+				"src\\js\\colorpalette.js"
+			],
+			[
+				"index",
+				"src\\index.html"
+			],
+			[
+				"colorp",
+				"src\\js\\colorpalette.js"
+			],
+			[
+				"inde",
+				"src\\index.html"
+			],
+			[
+				"examples.css",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"gri",
+				"src\\js\\gridController.js"
+			],
+			[
+				"load",
+				"src\\php\\load.php"
+			],
+			[
+				"slick-de",
+				"src\\js\\lib\\slickgrid\\slick-default-theme.css"
+			],
+			[
+				"exam",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"slick",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slick.col",
+				"src\\js\\lib\\slickgrid\\controls\\slick.columnpicker.css"
+			],
+			[
+				"",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slickg",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"gridco",
+				"src\\js\\gridController.js"
+			],
+			[
+				"slickgrid",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slickdefau",
+				"src\\js\\lib\\slickgrid\\slick-default-theme.css"
+			],
+			[
+				"grun",
+				"Gruntfile.js"
+			],
+			[
+				"examcss",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"slickgri",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\L-System\\L-System.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 275.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

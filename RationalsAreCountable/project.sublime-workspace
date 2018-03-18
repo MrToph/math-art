@@ -1,0 +1,1413 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"dura",
+				"durationPerGridElement"
+			],
+			[
+				"cur",
+				"curveAnimDuration"
+			],
+			[
+				"is",
+				"isRepetitionFree"
+			],
+			[
+				"opaci",
+				"opacityDuration"
+			],
+			[
+				"current",
+				"currentStep"
+			],
+			[
+				"curr",
+				"currentStep"
+			],
+			[
+				"squa",
+				"squareOffset"
+			],
+			[
+				"square",
+				"squareSize"
+			],
+			[
+				"dragPo",
+				"dragPointData"
+			],
+			[
+				"N_",
+				"N_phrase_num"
+			],
+			[
+				"func",
+				"function_words_tags"
+			],
+			[
+				"un",
+				"unchanging_plurals_list"
+			],
+			[
+				"tagged",
+				"tagged_words"
+			],
+			[
+				"numb",
+				"numberOfColumns"
+			],
+			[
+				"number",
+				"numberOfRows"
+			],
+			[
+				"ref",
+				"refPoint"
+			],
+			[
+				"middle",
+				"middlePoint"
+			],
+			[
+				"sk",
+				"sk_in_wif"
+			],
+			[
+				"secret",
+				"secretMultiplier"
+			],
+			[
+				"wif",
+				"secretExponentToWif"
+			],
+			[
+				"get",
+				"get_secret_exponent_little_endian"
+			],
+			[
+				"bin",
+				"binascii"
+			],
+			[
+				"secre",
+				"secretMultiplier"
+			],
+			[
+				"r2output",
+				"r2output2bytes"
+			],
+			[
+				"nonce",
+				"nonce2bytes"
+			],
+			[
+				"interpo",
+				"interpolationString"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"preis",
+				"Preis1"
+			],
+			[
+				"selec",
+				"selectedData"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"Grid",
+				"GridController"
+			],
+			[
+				"page",
+				"currentPage"
+			],
+			[
+				"filterText",
+				"filterTextSplits"
+			],
+			[
+				"data",
+				"dataArrived"
+			],
+			[
+				"i",
+				"initialized"
+			],
+			[
+				"def",
+				"deferred"
+			],
+			[
+				"Load",
+				"loadDataService"
+			],
+			[
+				"compareCate",
+				"compareCategoryName"
+			],
+			[
+				"comparedish",
+				"compareDishName"
+			],
+			[
+				"m",
+				"mysql_database"
+			],
+			[
+				"my",
+				"mysql_password"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 2977,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/app.js",
+			"settings":
+			{
+				"buffer_size": 317,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "import ISteppable from './ISteppable';\nrequire('../css/app.css');\n\nexport default class Visualization extends ISteppable {\n  constructor (element) {\n    super();\n    this.svg = null;\n    this.margin = {top: -0, right: -0, bottom: -0, left: -0};\n    this.width = 1000;\n    this.height = 1000;\n\n    this.currentStep = 0;\n    this.maxStep = 1;\n\n    let realWidth = this.width + this.margin.left + this.margin.right;\n    let realHeight = this.height + this.margin.top + this.margin.bottom;\n\n    let svg = d3.select(element).append('svg')\n      .attr('viewBox', '0 0 ' + realWidth + ' ' + realHeight)\n      .append('g')\n      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.right + ')');\n\n    this.svg = svg;\n\n    // Constants\n    this.upTo = 25;\n    this.zoomStartLayer = 1;\n    this.eleSize = 75;\n    this.translate = [0, 0];\n    this.scale = this.width / ((this.zoomStartLayer + 3.5) * this.eleSize);\n\n    svg.append('rect')\n      .attr('class', 'svgOuterRect')\n      .attr('x', -this.margin.left)\n      .attr('y', -this.margin.top)\n      .attr('width', realWidth)\n      .attr('height', realHeight);\n    let container = svg.append('g').attr('class', 'container')\n      .attr('transform', `translate(${this.translate[0]},${this.translate[1]}), scale(${this.scale})`);\n    this.container = container;\n    this.curve = this.container.append('g');\n    this.elements = this.container.append('g');\n    this.redraw(0);\n  }\n\n  createData (step, forward = true) {\n    let gcd = (a, b) => {\n      return b === 0 ? a : gcd(b, a % b);\n    };\n    let elementData = [];\n    this.curveData = [{points: new Array(this.upTo * this.upTo)}]; // path (curve) that goes through all points\n    let curvePoints = this.curveData[0].points;\n    for (let r = 0; r < this.upTo; r++) {\n      for (let c = 0; c < this.upTo; c++) {\n        let x = (c + 1) * this.eleSize;\n        let y = (r + 1) * this.eleSize;\n        let type = gcd(r + 1, c + 1) > 1 ? 1 : 0; // is it reduced fraction?\n        // let id = (r + c - 1)*(r + c - 2)/2 + r // diagonal enumeration\n        // L shaped build up, // reverse direction for even layers, i.e. Math.max(r,c) % 2 === 0\n        var id = Math.pow(Math.max(r, c), 2) + Math.max(r, c) + (Math.max(r, c) % 2 ? 1 : -1) * (r - c);\n\n        let text = `(${r2},${c2})`;\n        elementData.push({id, type, x, y, text});\n        curvePoints[id] = [x, y];\n      }\n    }\n    this.elementData = elementData;\n  }\n\n  redraw (step = this.currentStep , forward) {\n    this.currentStep = step;\n    this.createData(step, forward);\n    this.elements.selectAll('.txt').remove();\n    this.createElements();\n    this.createAnimations();\n  }\n\n  createElements () {\n    this.elements.selectAll('.txt').data(this.elementData).enter().append('text').attr('class', 'txt')\n      .text(d => d.text)\n      .attr('text-anchor', 'middle') // horizontal alignment\n      .attr('dominant-baseline', 'middle') // vertical alignment\n      .attr('transform', d => `translate(${d.x},${d.y})`)\n      .classed('type0', d => d.type === 0)\n      .classed('type1', d => d.type === 1);\n\n    let lineFunction = d3.svg.line()\n      .x(d => d[0])\n      .y(d => d[1])\n      .interpolate('linear');\n    this.curve.selectAll('.curve').data(this.curveData).enter().append('path').attr('class', 'curve')\n      .attr('d', d => lineFunction(d.points));\n  }\n\n  createAnimations () {\n    let path = this.curve.selectAll('.curve');\n    let totalLength = path.node().getTotalLength();\n    let curveAnimDuration = 5 * totalLength;\n    path.attr('stroke-dasharray', totalLength + ' ' + totalLength)\n      .attr('stroke-dashoffset', totalLength)\n      .transition()\n      .duration(curveAnimDuration)\n      .ease('linear')\n      .attr('stroke-dashoffset', 0);\n\n    let layer = this.zoomStartLayer; // layer of the grid. A layer is a L shaped ring\n    let curveDurPerGridElement = curveAnimDuration / (this.upTo * this.upTo - 1);\n    let zoomDuration = 350;\n    let runAnimation = () => {\n      if (layer > this.upTo) return;\n      let delayLayer = (2 * layer + 1) * curveDurPerGridElement; // difference of elements of two layers = bigger square - smaller square\n      if (layer === this.zoomStartLayer) { // start layer\n        delayLayer = Math.pow(this.zoomStartLayer + 1, 2) * curveDurPerGridElement;\n      }\n      delayLayer -= zoomDuration;\n      let scale = this.width / ((layer + 3.5) * this.eleSize); // 1 in advance, 1 because first element is at (1,1) instead of (0,0), 1 because of math, 0.5 padding\n      this.container.transition().delay(delayLayer).duration(zoomDuration).ease('linear')\n        .attr('transform', `translate(${this.translate[0]},${this.translate[1]}), scale(${scale})`)\n        .each('end', () => {\n          layer++;\n          runAnimation();\n        });\n    };\n    runAnimation();\n  // let zoom = d3.behavior.zoom().scaleExtent([0.1, 1]).on('zoom', zoomed)\n  // let zoomed = () => {\n  //   this.container.attr('transform', `translate(${this.translate[0]},${this.translate[1]}), scale(${zoom.scale()})`)\n  // }\n  // this.container.call(zoom)\n  // d3.transition().ease('linear').delay(4000).duration(750).tween('zoom', () => {\n  //   var scale = d3.interpolate(1, 0.9)\n  //   return t => {\n  //     zoom.scale(scale(t))\n  //     zoomed()\n  //   }\n  // })\n  }\n\n  onStep (forward) {\n    this.elements.selectAll('.element').interrupt().transition();\n    return super.onStep(forward); // calls redraw\n  }\n\n};\n",
+			"file": "src/js/Visualization.js",
+			"file_size": 5807,
+			"file_write_time": 131172363372200940,
+			"settings":
+			{
+				"buffer_size": 5406,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var index = Math.pow(Math.max(r, c), 2) + Math.max(r, c)\n			+ (Math.max(r, c) % 2 ? 1 : -1) * (r - c);\n\n\nvar layer = Math.floor(Math.sqrt(index));\nvar indexInLayer = index - layer * (layer + 1);\nvar r = layer + Math.min(indexInLayer, 0);\nvar c = layer - Math.max(indexInLayer, 0);\nif (layer % 2 == 0) {	// swap r and c\n  var tmp = r;\n  r = c;\n  c = tmp;\n}",
+			"settings":
+			{
+				"buffer_size": 355,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Christoph/Dropbox/cmichel/ideen.todo",
+			"settings":
+			{
+				"buffer_size": 949,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"file": "/C/Users/Christoph/Dropbox/cmichel/posts/spiral-enumeration/post.html",
+			"file_size": 416,
+			"file_write_time": 131162811600000000,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 1457,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\n> work@0.1.0 server C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\MathArt\\RationalsAreCountable\n> webpack-dev-server --display-error-details --progress --inline\n\n  0% compile 10% 0/1 build modules 70% 1/1 build moduleshttp://localhost:8080/\nwebpack result is served from /RationalsAreCountable/src/build/\ncontent is served from C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\MathArt\n 40% 1/2 build modules 70% 2/2 build modules 50% 2/3 build modules 40% 2/4 build modules 34% 2/5 build modules 46% 3/5 build modules 40% 3/6 build modules 35% 3/7 build modules 44% 4/7 build modules 52% 5/7 build modules 61% 6/7 build modules 70% 7/7 build modules 62% 7/8 build modules 56% 7/9 build modules 52% 7/10 build modules 48% 7/11 build modules 45% 7/12 build modules 42% 7/13 build modules 40% 7/14 build modules 44% 8/14 build modules 48% 9/14 build modules 52% 10/14 build modules 57% 11/14 build modules 61% 12/14 build modules 65% 13/14 build modules 62% 13/15 build modules 65% 14/15 build modules 62% 14/16 build modules 59% 14/17 build modules 56% 14/18 build modules 54% 14/19 build modules 52% 14/20 build modules 50% 14/21 build modules 48% 14/22 build modules 46% 14/23 build modules 45% 14/24 build modules 43% 14/25 build modules 42% 14/26 build modules 41% 14/27 build modules 40% 14/28 build modules 38% 14/29 build modules 38% 14/30 build modules 37% 14/31 build modules 36% 14/32 build modules 35% 14/33 build modules 34% 14/34 build modules 34% 14/35 build modules 33% 14/36 build modules 32% 14/37 build modules 32% 14/38 build modules 31% 14/39 build modules 31% 14/40 build modules 30% 14/41 build modules 30% 14/42 build modules 29% 14/43 build modules 29% 14/44 build modules 28% 14/45 build modules 30% 15/45 build modules 29% 15/46 build modules 29% 15/47 build modules 28% 15/48 build modules 30% 16/48 build modules 31% 17/48 build modules 32% 18/48 build modules 33% 19/48 build modules 35% 20/48 build modules 36% 21/48 build modules 37% 22/48 build modules 38% 23/48 build modules 40% 24/48 build modules 41% 25/48 build modules 42% 26/48 build modules 43% 27/48 build modules 45% 28/48 build modules 46% 29/48 build modules 47% 30/48 build modules 48% 31/48 build modules 50% 32/48 build modules 51% 33/48 build modules 52% 34/48 build modules 53% 35/48 build modules 54% 36/48 build modules 56% 37/48 build modules 57% 38/48 build modules 58% 39/48 build modules 60% 40/48 build modules 61% 41/48 build modules 62% 42/48 build modules 63% 43/48 build modules 62% 43/49 build modules 61% 43/50 build modules 60% 43/51 build modules 61% 44/51 build modules 62% 45/51 build modules 61% 45/52 build modules 60% 45/53 build modules 60% 45/54 build modules 59% 45/55 build modules 58% 45/56 build modules 57% 45/57 build modules 56% 45/58 build modules 55% 45/59 build modules 54% 45/60 build modules 54% 45/61 build modules 53% 45/62 build modules 52% 45/63 build modules 52% 45/64 build modules 51% 45/65 build modules 50% 45/66 build modules 51% 46/66 build modules 51% 46/67 build modules 50% 46/68 build modules 50% 46/69 build modules 49% 46/70 build modules 48% 46/71 build modules 48% 46/72 build modules 47% 46/73 build modules 48% 47/73 build modules 49% 48/73 build modules 48% 48/74 build modules 49% 49/74 build modules 50% 50/74 build modules 51% 51/74 build modules 50% 51/75 build modules 51% 52/75 build modules 52% 53/75 build modules 53% 54/75 build modules 53% 55/75 build modules 54% 56/75 build modules 55% 57/75 build modules 56% 58/75 build modules 57% 59/75 build modules 57% 60/75 build modules 58% 61/75 build modules 59% 62/75 build modules 60% 63/75 build modules 61% 64/75 build modules 62% 65/75 build modules 62% 66/75 build modules 63% 67/75 build modules 64% 68/75 build modules 65% 69/75 build modules 65% 70/75 build modules 65% 70/76 build modules 66% 71/76 build modules 65% 71/77 build modules 66% 72/77 build modules 66% 73/77 build modules 66% 73/78 build modules 65% 73/79 build modules 66% 74/79 build modules 65% 74/80 build modules 64% 74/81 build modules 64% 74/82 build modules 64% 75/82 build modules 65% 76/82 build modules 66% 77/82 build modules 67% 78/82 build modules 67% 79/82 build modules 68% 80/82 build modules 69% 81/82 build modules 70% 82/82 build modules 69% 82/83 build modules 70% 83/83 build modules                71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 165913c9e7731223182e\nVersion: webpack 1.13.1\nTime: 2394ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  260 kB       0  [emitted]  main\nall.min.js.map  305 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 240 kB [rendered]\n    [0] multi main 40 bytes {0} [built]\n    [1] (webpack)-dev-server/client?http://localhost:8080 2.67 kB {0} [built]\n    [2] ./~/url/url.js 22.3 kB {0} [built]\n    [3] ./~/url/~/punycode/punycode.js 14.6 kB {0} [built]\n    [4] (webpack)/buildin/module.js 251 bytes {0} [built]\n    [5] ./~/querystring/index.js 127 bytes {0} [built]\n    [6] ./~/querystring/decode.js 2.4 kB {0} [built]\n    [7] ./~/querystring/encode.js 2.09 kB {0} [built]\n    [8] ./~/sockjs-client/lib/entry.js 244 bytes {0} [built]\n    [9] ./~/sockjs-client/lib/transport-list.js 613 bytes {0} [built]\n   [10] ./~/sockjs-client/lib/transport/websocket.js 2.71 kB {0} [built]\n   [11] ./~/process/browser.js 2.12 kB {0} [built]\n   [12] ./~/sockjs-client/lib/utils/event.js 2 kB {0} [built]\n   [13] ./~/sockjs-client/lib/utils/random.js 746 bytes {0} [built]\n   [14] ./~/sockjs-client/lib/utils/browser-crypto.js 438 bytes {0} [built]\n   [15] ./~/sockjs-client/lib/utils/url.js 975 bytes {0} [built]\n   [16] ./~/url-parse/index.js 8.09 kB {0} [built]\n   [17] ./~/requires-port/index.js 753 bytes {0} [built]\n   [18] ./~/url-parse/lolcation.js 1.58 kB {0} [built]\n   [19] ./~/querystringify/index.js 1.3 kB {0} [built]\n   [20] ./~/debug/browser.js 3.76 kB {0} [built]\n   [21] ./~/debug/debug.js 4.1 kB {0} [built]\n   [22] ./~/ms/index.js 2.33 kB {0} [built]\n   [23] ./~/inherits/inherits_browser.js 672 bytes {0} [built]\n   [24] ./~/sockjs-client/lib/event/emitter.js 1.27 kB {0} [built]\n   [25] ./~/sockjs-client/lib/event/eventtarget.js 1.85 kB {0} [built]\n   [26] ./~/sockjs-client/lib/transport/browser/websocket.js 172 bytes {0} [built]\n   [27] ./~/sockjs-client/lib/transport/xhr-streaming.js 1.25 kB {0} [built]\n   [28] ./~/sockjs-client/lib/transport/lib/ajax-based.js 1.31 kB {0} [built]\n   [29] ./~/sockjs-client/lib/transport/lib/sender-receiver.js 1.15 kB {0} [built]\n   [30] ./~/sockjs-client/lib/transport/lib/buffered-sender.js 2.3 kB {0} [built]\n   [31] ./~/sockjs-client/lib/transport/lib/polling.js 1.32 kB {0} [built]\n   [32] ./~/sockjs-client/lib/transport/receiver/xhr.js 1.58 kB {0} [built]\n   [33] ./~/sockjs-client/lib/transport/sender/xhr-cors.js 343 bytes {0} [built]\n   [34] ./~/sockjs-client/lib/transport/browser/abstract-xhr.js 4.8 kB {0} [built]\n   [35] ./~/sockjs-client/lib/transport/sender/xhr-local.js 352 bytes {0} [built]\n   [36] ./~/sockjs-client/lib/utils/browser.js 560 bytes {0} [built]\n   [37] ./~/sockjs-client/lib/transport/xdr-streaming.js 984 bytes {0} [built]\n   [38] ./~/sockjs-client/lib/transport/sender/xdr.js 2.46 kB {0} [built]\n   [39] ./~/sockjs-client/lib/transport/eventsource.js 766 bytes {0} [built]\n   [40] ./~/sockjs-client/lib/transport/receiver/eventsource.js 1.58 kB {0} [built]\n   [41] ./~/sockjs-client/lib/transport/browser/eventsource.js 37 bytes {0} [built]\n   [42] ./~/sockjs-client/lib/transport/lib/iframe-wrap.js 981 bytes {0} [built]\n   [43] ./~/sockjs-client/lib/transport/iframe.js 3.83 kB {0} [built]\n   [44] ./~/json3/lib/json3.js 43.3 kB {0} [built]\n   [45] (webpack)/buildin/amd-options.js 43 bytes {0} [built]\n   [46] ./~/sockjs-client/lib/version.js 26 bytes {0} [built]\n   [47] ./~/sockjs-client/lib/utils/iframe.js 5.06 kB {0} [built]\n   [48] ./~/sockjs-client/lib/utils/object.js 532 bytes {0} [built]\n   [49] ./~/sockjs-client/lib/transport/htmlfile.js 710 bytes {0} [built]\n   [50] ./~/sockjs-client/lib/transport/receiver/htmlfile.js 2.2 kB {0} [built]\n   [51] ./~/sockjs-client/lib/transport/xhr-polling.js 894 bytes {0} [built]\n   [52] ./~/sockjs-client/lib/transport/xdr-polling.js 712 bytes {0} [built]\n   [53] ./~/sockjs-client/lib/transport/jsonp-polling.js 1.02 kB {0} [built]\n   [54] ./~/sockjs-client/lib/transport/receiver/jsonp.js 5.57 kB {0} [built]\n   [55] ./~/sockjs-client/lib/transport/sender/jsonp.js 2.46 kB {0} [built]\n   [56] ./~/sockjs-client/lib/main.js 11.9 kB {0} [built]\n   [57] ./~/sockjs-client/lib/shims.js 18.2 kB {0} [built]\n   [58] ./~/sockjs-client/lib/utils/escape.js 2.31 kB {0} [built]\n   [59] ./~/sockjs-client/lib/utils/transport.js 1.35 kB {0} [built]\n   [60] ./~/sockjs-client/lib/utils/log.js 450 bytes {0} [built]\n   [61] ./~/sockjs-client/lib/event/event.js 477 bytes {0} [built]\n   [62] ./~/sockjs-client/lib/location.js 177 bytes {0} [built]\n   [63] ./~/sockjs-client/lib/event/close.js 295 bytes {0} [built]\n   [64] ./~/sockjs-client/lib/event/trans-message.js 292 bytes {0} [built]\n   [65] ./~/sockjs-client/lib/info-receiver.js 2.22 kB {0} [built]\n   [66] ./~/sockjs-client/lib/transport/sender/xhr-fake.js 456 bytes {0} [built]\n   [67] ./~/sockjs-client/lib/info-iframe.js 1.52 kB {0} [built]\n   [68] ./~/sockjs-client/lib/info-iframe-receiver.js 791 bytes {0} [built]\n   [69] ./~/sockjs-client/lib/info-ajax.js 1.03 kB {0} [built]\n   [70] ./~/sockjs-client/lib/iframe-bootstrap.js 2.9 kB {0} [built]\n   [71] ./~/sockjs-client/lib/facade.js 723 bytes {0} [built]\n   [72] ./~/strip-ansi/index.js 161 bytes {0} [built]\n   [73] ./~/ansi-regex/index.js 135 bytes {0} [built]\n   [74] ./src/js/app.js 506 bytes {0} [built]\n   [75] ./src/js/Visualization.js 9.04 kB {0} [built]\n   [76] ./src/js/ISteppable.js 2 kB {0} [built]\n   [77] ./src/js/PeanoCurve.js 3.71 kB {0} [built]\n   [78] ./src/js/Curve.js 1.18 kB {0} [built]\n   [79] ./src/css/app.css 913 bytes {0} [built]\n   [80] ./~/css-loader!./src/css/app.css 391 bytes {0} [built]\n   [81] ./~/css-loader/lib/css-base.js 1.51 kB {0} [built]\n   [82] ./~/style-loader/addStyles.js 7.15 kB {0} [built]\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 10% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 08aa0d20f02f146eec8b\nVersion: webpack 1.13.1\nTime: 354ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.94 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 1a4de8867112e3e9f885\nVersion: webpack 1.13.1\nTime: 295ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.94 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 6458a03b5b4aa6188317\nVersion: webpack 1.13.1\nTime: 319ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 7594cc30df46aa16ed52\nVersion: webpack 1.13.1\nTime: 435ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 8b1f1f586cfb32f88b7b\nVersion: webpack 1.13.1\nTime: 388ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 7594cc30df46aa16ed52\nVersion: webpack 1.13.1\nTime: 301ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 6b08ab13b9445d9bab16\nVersion: webpack 1.13.1\nTime: 321ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 8b1f1f586cfb32f88b7b\nVersion: webpack 1.13.1\nTime: 401ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a7ca74de050343bbc92f\nVersion: webpack 1.13.1\nTime: 317ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: b41d67c51ddb7d60a1fb\nVersion: webpack 1.13.1\nTime: 296ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: d26093cf63ce904e990c\nVersion: webpack 1.13.1\nTime: 415ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a63e799e12636ecbeaeb\nVersion: webpack 1.13.1\nTime: 401ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: bf2eb97327cbbaeac2f4\nVersion: webpack 1.13.1\nTime: 393ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 75354a646c920c3de488\nVersion: webpack 1.13.1\nTime: 180ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 408 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: f7c2c1d26a613bfb1570\nVersion: webpack 1.13.1\nTime: 163ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 408 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 75354a646c920c3de488\nVersion: webpack 1.13.1\nTime: 219ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 408 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: fce206f8707f4fe9922f\nVersion: webpack 1.13.1\nTime: 295ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 33044a0ea5dbafa42b66\nVersion: webpack 1.13.1\nTime: 245ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 987a488ab99d7bcfed10\nVersion: webpack 1.13.1\nTime: 331ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 844765b4bff3e5b6cbc8\nVersion: webpack 1.13.1\nTime: 338ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.95 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 50066eb98f2bd13644ad\nVersion: webpack 1.13.1\nTime: 186ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 408 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 4ca6277c38114c74d73d\nVersion: webpack 1.13.1\nTime: 224ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 413 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 3d82e1e98ce49d838493\nVersion: webpack 1.13.1\nTime: 196ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 413 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 366a34506f821b3375b0\nVersion: webpack 1.13.1\nTime: 155ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 413 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 8010170a7bea46ef11ba\nVersion: webpack 1.13.1\nTime: 162ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 430 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: f5018e8e2eac68d82573\nVersion: webpack 1.13.1\nTime: 202ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 447 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: f5018e8e2eac68d82573\nVersion: webpack 1.13.1\nTime: 26ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [80] ./~/css-loader!./src/css/app.css 447 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: b53d47281cc35685cc48\nVersion: webpack 1.13.1\nTime: 192ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 447 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: aa6114caaf9156164cd4\nVersion: webpack 1.13.1\nTime: 191ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 425 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: aa6114caaf9156164cd4\nVersion: webpack 1.13.1\nTime: 19ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [80] ./~/css-loader!./src/css/app.css 425 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: c499cb4e38486835b604\nVersion: webpack 1.13.1\nTime: 157ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [80] ./~/css-loader!./src/css/app.css 425 bytes {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 8ad5c5073dfec7d1041c\nVersion: webpack 1.13.1\nTime: 346ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.94 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: d303e50e6bd9578a5f9b\nVersion: webpack 1.13.1\nTime: 327ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.97 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 9f9d414c34d8efd0d0b9\nVersion: webpack 1.13.1\nTime: 369ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.98 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: df6a40b14dbd9ec967df\nVersion: webpack 1.13.1\nTime: 431ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.98 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 947936de9f392eda0b30\nVersion: webpack 1.13.1\nTime: 418ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.8 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 947936de9f392eda0b30\nVersion: webpack 1.13.1\nTime: 141ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [75] ./src/js/Visualization.js 8.8 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a05fa3de3471ff472f34\nVersion: webpack 1.13.1\nTime: 285ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.96 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a05fa3de3471ff472f34\nVersion: webpack 1.13.1\nTime: 153ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [75] ./src/js/Visualization.js 8.96 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a05fa3de3471ff472f34\nVersion: webpack 1.13.1\nTime: 106ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [75] ./src/js/Visualization.js 8.96 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: a05fa3de3471ff472f34\nVersion: webpack 1.13.1\nTime: 113ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [75] ./src/js/Visualization.js 8.96 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 1648dcd4b4cbbc6e9aac\nVersion: webpack 1.13.1\nTime: 312ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.98 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 403e4598e279225e6354\nVersion: webpack 1.13.1\nTime: 347ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.99 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 79317d9ed069a300795f\nVersion: webpack 1.13.1\nTime: 319ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.99 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 824eee714722af6fce8b\nVersion: webpack 1.13.1\nTime: 412ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 8.96 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: ec615e1bb8361a341443\nVersion: webpack 1.13.1\nTime: 416ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 9.07 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: ec615e1bb8361a341443\nVersion: webpack 1.13.1\nTime: 117ms\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB\n   [75] ./src/js/Visualization.js 9.07 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\nwebpack: bundle is now INVALID.\n  0% compile 10% 0/1 build modules 70% 1/1 build modules              71% seal 73% optimize  75% hashing 76% create chunk assets 78% additional chunk assets   80% optimize chunk assets       90% optimize assets            95% emit         Hash: 338d0fdf17d86ef65e71\nVersion: webpack 1.13.1\nTime: 348ms\n         Asset    Size  Chunks             Chunk Names\n    all.min.js  255 kB       0  [emitted]  main\nall.min.js.map  301 kB       0  [emitted]  main\nchunk    {0} all.min.js, all.min.js.map (main) 235 kB [rendered]\n   [75] ./src/js/Visualization.js 9.07 kB {0} [built]\n     + 80 hidden modules\nwebpack: bundle is now VALID.\n",
+			"settings":
+			{
+				"buffer_size": 58529,
+				"line_ending": "Windows",
+				"name": "npm run server [Running]",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "src/css/app.css",
+			"settings":
+			{
+				"buffer_size": 192,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 225.0,
+		"selected_items":
+		[
+			[
+				"npm run",
+				"npm: Run Script"
+			],
+			[
+				"npm run sc",
+				"npm: Run Script"
+			],
+			[
+				"npm remo",
+				"npm: Remove/Uninstall Saved Package"
+			],
+			[
+				"gulp",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp ar",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp ",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp r",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp kill",
+				"Gulp: Kill running tasks"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"unin",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"GULP arbi",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp kil",
+				"Gulp: Kill running tasks"
+			],
+			[
+				"gulp arbi",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp arb",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp art",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp arbit",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulpo",
+				"Gulp: Show panel"
+			],
+			[
+				"gulp abi",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"gulp last",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp run last",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp lat",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp list",
+				"Gulp: Exit editor killing running tasks"
+			],
+			[
+				"gulp run",
+				"Gulp: Run last task"
+			],
+			[
+				"gulp run arb",
+				"Gulp: Run arbitrary task"
+			],
+			[
+				"npm instal",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"gulp la",
+				"Gulp: Run last task"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"npm ",
+				"npm: Run Script"
+			],
+			[
+				"npm",
+				"npm: Run Script"
+			],
+			[
+				"npm st",
+				"npm: Run Script"
+			],
+			[
+				"npm install",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"npm ru",
+				"npm: Run Script"
+			],
+			[
+				"grunt",
+				"Grunt"
+			],
+			[
+				"run",
+				"npm: Run Script"
+			],
+			[
+				"npm sr",
+				"npm: Run Script"
+			],
+			[
+				"npm install sa",
+				"npm: Install Saved Packages"
+			],
+			[
+				"npm insta",
+				"npm: Install and Save Development Package"
+			],
+			[
+				"package control insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package control list pa",
+				"Package Control: List Packages"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"npm uninstall",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"npm remove",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"packge instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package inta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"package con",
+				"Package Control: Install Package"
+			],
+			[
+				"grun",
+				"Grunt"
+			],
+			[
+				"Grunt",
+				"Grunt"
+			],
+			[
+				"grn",
+				"Grunt"
+			],
+			[
+				"grnut",
+				"Grunt"
+			],
+			[
+				"gr",
+				"Grunt"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"trail",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"pckginsta",
+				"Package Control: Install Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"space",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"tr",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"gru",
+				"Grunt"
+			],
+			[
+				"trai",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"feun",
+				"Preferences: Grunt - Settings – Default"
+			],
+			[
+				"grim",
+				"AngularJS: Toggle - Disable Built-in Element Completions"
+			],
+			[
+				"g",
+				"AngularJS: Toggle - Enable data- Prefix"
+			],
+			[
+				"tra",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"trailin",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"trailing",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"traces",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"package enb",
+				"Package Control: Enable Package"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 510.0
+	},
+	"console":
+	{
+		"height": 234.0,
+		"history":
+		[
+			"npm init",
+			"print('\\n'*100)",
+			"clc",
+			"clear",
+			"npm install -g grunt",
+			"npm install",
+			"dir",
+			"ls",
+			"npm install -g grunt-cli",
+			"import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"clear",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Christoph/Dropbox/cmichel/posts/spiral-enumeration/post.txt",
+		"/C/Users/Christoph/Dropbox/cmichel/posts/l-system/post.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/RationalsAreCountable/src/js/ISteppable.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/RationalsAreCountable/src/js/Stepper.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/SumOfCubes/src/js/Visualization.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/L-System/webpack.config.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/RationalsAreCountable/webpack.config.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/RationalsAreCountable/package.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/L-System/package.json",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/TriangulizationStabilizer/src/js/app.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/MathArt/RationalsAreCountable/gulpfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/build/all.min.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/maxBits-pRhd3WGJME7CFSczX/maxBits.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/numberGame-9nTbqicisfHXHMjHn/numberGame.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/Bottles_1-j5oSoCSdLrD7bfW63/Bottles_1.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/MoreTimesLess-T9mZQb7SF3jo9Dxhm/MoreTimesLess.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/gulpfile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/IceRinkPar-W2QwLFvi2YbNY7RcL/IceRinkPar.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/app.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/pythagoreanTiling.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/npm-debug.log",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/PowerSet/powerset.js",
+		"/C/Users/Christoph/Dropbox/anderes/MathematicalBeauty/beautiful proofs.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/luckyandprime2-nwwqKRFbqg5iNhNNQ/luckyandprime2.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/GetDuplicates-x4fLDh2ZYHbaycvFX/GetDuplicates.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/repetitionFree-saE68kntsJQzdNmWz/repetitionFree.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/incrementalBackups/incrementalBackups.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/backupTimeEstimator/backupTimeEstimator.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/troubleFiles/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/troubleFiles/troubleFiles.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/ksubsequences-DBDMfEj46wcyZovys/ksubsequences.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/Super_Triangle-s7JsoEXRotKqD7q5Q/Super_Triangle.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/GoldenNumbers-xn46khnLq3ZirE3Qg/GoldenNumbers.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/domainForwarding/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/backupTimeEstimator/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/datto/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/simpleNutritionCalc-vj7GNBvrCeN8gH8fP/simpleNutritionCalc.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/domainForwarding/domainForwarding.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/domainForwarding/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/domainType/domainType.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/domainType/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/typosquatting/typosquatting.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/relatedQuestions/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/relatedQuestions/relatedQuestions.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Tournaments/theFile.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/primeSquare-jHGYnJdmxD9SuJQYw/primeSquare.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/firstone-jQHANjXgS7D6bR62t/firstone.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/grayCode-rPgBvZjXDFwNHrrhS/grayCode.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/howManySeconds-64k79pJMtLc2XTbdP/howManySeconds.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/Challenges/arraySorting-QEj83qknW2oDAK79X/arraySorting.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Godaddy/README.md",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/tern_for_sublime/Tern.sublime-settings",
+		"/C/Users/Christoph/Dropbox/Programme/Sublime Text Build 3059 x64/Data/Packages/User/Tern.sublime-settings",
+		"/C/Users/Christoph/Dropbox/anderes/homepageideen.txt",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/README.md",
+		"/C/Users/Christoph/Downloads/RayTracerUnity-master/.gitignore",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/.gitignore",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/RayTracer/RayTracer.sdf",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/RayTracer/Assets/Materials/blue.mat.meta",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/RayTracer/Assets/Prefabs.meta",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/RayTracer/Assets/rhino_fixed.obj.meta",
+		"/C/Users/Christoph/Dropbox/workspace/Unity/RayTracer/RayTracer/Assets/Scripts.meta",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/squaresInGrid-j7PAwfkajJu2A5ybP/squaresInGrid.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/feedOptimizer/feedOptimizer.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/feedOptimizer/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/relatedQuestions/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/isPronic-qZfpoeALnuY26YNaf/isPronic.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/index.html",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/swapSequence-ZYcY8u59FAog4F5fk/swapSequence.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/mostViewedWriters/mostViewedWriters.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/BotFights/Quora/mostViewedWriters/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/CocaMinion-CHD5wy6TYbL4phsRT/CocaMinion.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/ninjabot/fileNaming.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/CountProgram-PgyG34k9sLZKhTf58/CountProgram.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/reverseHexadecimal-7T3uBRMPPCcTG3r7D/reverseHexadecimal.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/BinaryPalindrome-Q6Ai4nxpRjFx5sYWj/BinaryPalindrome.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/SimpleSecretMessage-JGpAv9mkqkpCacQm2/SimpleSecretMessage.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/luckyandprimeprime-doXskkj8PMAJ27Epk/luckyandprimeprime.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/RGBtoHex-o2cJs527TgB5dKzct/RGBtoHex.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/SetPar-hukzJ5FskimR5Mf45/SetPar.js",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/stringDivision-ifSxNwEhkPER6hExe/stringDivision.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/RandomNumbers-uu6GraiBoeSFwE4Fe/RandomNumbers.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/unshift-S8ErLGALGXkZgNTan/unshift.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FibonacciSort-QczEop25GyKxsRTjJ/FibonacciSort.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/usbAndFile-hMCmr72eyrJBNEdp9/usbAndFile.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/NarcissisticNumber-3eZwiyP6btWXDxohS/NarcissisticNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GenerateCode-GPw6LZT685xxJgnvT/GenerateCode.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/stepOnCrack2-nawzrMCKuMoq5SG3t/stepOnCrack2.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/helptoclone-SZRtfwnjeBTyk9yy5/helptoclone.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/secondLargest-qQ762Pzrgm5KaBMT6/secondLargest.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/changumangu23-hBzGLr7CBfnbNCeex/changumangu23.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/encoding-xmLcAnqyM2ozLB34y/encoding.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/MultipleNumber-sfW9pdqpfDCiasbX6/MultipleNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/labyrinth2-kFWA4ZkJSfvwh4q8d/labyrinth2.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/productTcudorp-P4XeTQi9BJ3H3cm8r/productTcudorp.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/niceSubsets-Z2er7vLukAa2eoJJJ/niceSubsets.jsx",
+		"/C/Users/Christoph/AppData/Local/Temp/Temp1_Azad - Leben II (2016) [320].zip/Get Password.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Truly_Random-WFRx6HvmG5KLABepG/Truly_Random.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/findBiSlice-n75eG9MuhDzejuCyp/findBiSlice.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/nextNumber-fE4DJSQmFQEWrdYwp/nextNumber.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/BirdsLanguage-we7jqYhFEKNMmYxpN/BirdsLanguage.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/LadderGraph-gNBpsy8fob9TypF3q/LadderGraph.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/sumones-YYCWR4F7tXHpkBdsg/sumones.jsx",
+		"/C/Users/Christoph/Dropbox/anderes/blender-shortcuts.txt",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/EvenNumbers-4HANW3Rbjcs9TZmMM/EvenNumbers.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/src/js/phantom.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Fact-Sm7TY2JehkZXr8zr2/Fact.jsx",
+		"/C/Users/Christoph/Desktop/hearth-db-master/public/index.html",
+		"/D/backups/wordpress-themes/hyperx-child/single-royal_portfolio.php",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/LongMatrixProduct-rE6wJbeZB3vA8KADt/LongMatrixProduct.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FlipCup-kZJAxKBZkaWL7yGEt/FlipCup.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/Consensus-QpYRXWaeoopy5u6JZ/Consensus.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/MissingTerm-3j5Zd3nRMjghZttP2/MissingTerm.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/PeriodicRows-uPYiZqNFE3n2LiLpg/PeriodicRows.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/triplet-ab5C54f7rRwYZAn38/triplet.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/PeriodicRows-uPYiZqNFE3n2LiLpg/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GalaxyAZ-a9NhJYdzoBBPnxMJs/GalaxyAZ.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/fifteen_game-DRDeYmmEGQMQNsJyb/fifteen_game.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/fifteen_game-DRDeYmmEGQMQNsJyb/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/conversion-CJjYQBCnP73Noq6Cg/conversion.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FactorialSum-yhN2jyWsWDTWA4qnW/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/FactorialSum-yhN2jyWsWDTWA4qnW/FactorialSum.jsx",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/challenges/GalaxyAZ-a9NhJYdzoBBPnxMJs/README.md",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/CodeFightsChallenges/project.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfFibonacci/sumOfFibonacci.sublime-project",
+		"/C/Users/Christoph/Dropbox/workspace/WebDevelopment/SumOfInvPowThree/src/build/all.min.js"
+	],
+	"find":
+	{
+		"height": 57.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"t",
+			"s",
+			"id",
+			"c2",
+			"r2",
+			"durationPerGridElement",
+			"step",
+			"curveData",
+			"i",
+			"el",
+			";",
+			"scan",
+			"dist",
+			"queue",
+			"dir",
+			"lastIce",
+			"Infinity",
+			"distanceMap",
+			"height",
+			"width",
+			"var ",
+			"abs",
+			"course",
+			"angles",
+			"sameRadius",
+			"var ",
+			"count",
+			"nums",
+			"sum",
+			"count",
+			"var ",
+			"Math.max",
+			"steps",
+			"sieve",
+			"scan",
+			"el",
+			"run",
+			"dir",
+			"queue",
+			"dM",
+			"course",
+			"distanceMap",
+			"height",
+			"width",
+			"height",
+			"var ",
+			"ans",
+			"mod",
+			"conditionalAdd",
+			"numOdd",
+			"numEven",
+			"var ",
+			"max",
+			"from",
+			"ni",
+			"oi",
+			"arr",
+			"newest",
+			"oldest",
+			"min",
+			"rec",
+			"end",
+			"start",
+			"row0",
+			"inversions",
+			"this.textData",
+			"textData",
+			"this.texts",
+			"this.groups",
+			"hilbert",
+			"sin",
+			"d => d.layer ===",
+			"mouse",
+			"boxdot",
+			"groupData",
+			"px",
+			"outline-offset",
+			"mailchimp",
+			"stepper",
+			"curly",
+			"c",
+			"curly",
+			"onComplete",
+			"onStep",
+			"Boxgeome",
+			"color",
+			"0xffffff",
+			"redraw",
+			"onStep",
+			".onStep",
+			"translate",
+			"{\n",
+			"_this.points\\[",
+			"_this.points[",
+			"\n  g.transition().ease('linear').duration(3000).attr('transform', 'translate(800, 400)')\n              .each(\"end\", function() {   \n                h.transition().ease('linear').duration(4000).attrTween(\"transform\", function() { \n                  var interpolater = d3.interpolate(0, 360); \n                  return function(t) { return \"rotate(\" + interpolater(t) + \")\" }\n                }); \n              });",
+			"bind",
+			"b",
+			"bind",
+			"clamp",
+			"cx",
+			"\"></",
+			"graphdraw",
+			"lmlicenses",
+			"%",
+			"\\$",
+			"$",
+			"%",
+			"\\$",
+			"$",
+			"TAS",
+			"I/GameAna",
+			"analytics:",
+			"resource",
+			"GameAnalytics",
+			"MainMenu",
+			"jewel",
+			".*\\n",
+			"*.\\n",
+			"return",
+			"if match:",
+			"\",",
+			".*\\n",
+			"eats\n",
+			"eats",
+			"twitch",
+			"tW",
+			"scale",
+			"colMeans"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"Z",
+			"",
+			"S",
+			"G",
+			"F",
+			"E",
+			"L",
+			"I",
+			"D",
+			"H",
+			"W",
+			"",
+			"C",
+			"A",
+			"S",
+			"",
+			"C",
+			"n",
+			"S",
+			"C",
+			"",
+			"M",
+			"S",
+			"E",
+			"R",
+			"d",
+			"Q",
+			"D",
+			"C",
+			"dM",
+			"h",
+			"w",
+			"",
+			"a",
+			"q",
+			"a",
+			"o",
+			"e",
+			"",
+			"y",
+			"f",
+			"n",
+			"m",
+			"a",
+			"n",
+			"o",
+			"v",
+			"r",
+			"e",
+			"s",
+			"r",
+			"v",
+			"this.outerData",
+			"this.outer",
+			"this.elements",
+			"_this.idToPoint(",
+			"[/latex]",
+			"[latex]",
+			"[/latex]",
+			"[latex]",
+			"stem =",
+			"if stem == \"\" and match:",
+			"`Kategorien",
+			"Kategorien",
+			"Gerichte",
+			"Essen",
+			"5.0rem",
+			"3.0rem",
+			"",
+			"./js/lib/slickgrid/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								869,
+								869
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 317,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								312,
+								312
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/Visualization.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5406,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2256,
+								2256
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 603.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 355,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								355,
+								105
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\MathArt\\RationalsAreCountable",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Christoph/Dropbox/cmichel/ideen.todo",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								386,
+								386
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PlainTasks/PlainTasks.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Christoph/Dropbox/cmichel/posts/spiral-enumeration/post.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1457,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87,
+								87
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 58529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58529,
+								58529
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\MathArt\\RationalsAreCountable",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3546.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/css/app.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								149,
+								149
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 155.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.gulp_output":
+	{
+		"height": 128.0
+	},
+	"output.textarea":
+	{
+		"height": 128.0
+	},
+	"project": "project.sublime-project",
+	"replace":
+	{
+		"height": 98.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"web",
+				"webpack.config.js"
+			],
+			[
+				"app.css",
+				"src\\css\\app.css"
+			],
+			[
+				"app",
+				"src\\js\\app.jsx"
+			],
+			[
+				"grid",
+				"src\\js\\gridController.js"
+			],
+			[
+				"color",
+				"src\\js\\colorpalette.js"
+			],
+			[
+				"index",
+				"src\\index.html"
+			],
+			[
+				"colorp",
+				"src\\js\\colorpalette.js"
+			],
+			[
+				"inde",
+				"src\\index.html"
+			],
+			[
+				"examples.css",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"gri",
+				"src\\js\\gridController.js"
+			],
+			[
+				"load",
+				"src\\php\\load.php"
+			],
+			[
+				"slick-de",
+				"src\\js\\lib\\slickgrid\\slick-default-theme.css"
+			],
+			[
+				"exam",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"slick",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slick.col",
+				"src\\js\\lib\\slickgrid\\controls\\slick.columnpicker.css"
+			],
+			[
+				"",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slickg",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"gridco",
+				"src\\js\\gridController.js"
+			],
+			[
+				"slickgrid",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			],
+			[
+				"slickdefau",
+				"src\\js\\lib\\slickgrid\\slick-default-theme.css"
+			],
+			[
+				"grun",
+				"Gruntfile.js"
+			],
+			[
+				"examcss",
+				"src\\js\\lib\\slickgrid\\examples\\examples.css"
+			],
+			[
+				"slickgri",
+				"src\\js\\lib\\slickgrid\\slick.grid.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Christoph\\Dropbox\\workspace\\WebDevelopment\\CodeFightsChallenges\\CodeFight.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 275.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

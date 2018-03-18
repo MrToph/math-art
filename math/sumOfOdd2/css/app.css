@@ -1,0 +1,16 @@
+.triangle{
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.firstColor{
+  fill: #ff3232;
+}
+
+.secondColor{
+  fill: #3232ff;
+}
+
+.outerTxt{
+	font-size: 32pt;
+}

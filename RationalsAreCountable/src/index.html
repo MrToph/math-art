@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Rationals are countable</h1>
+    </header>
+    <p><a href="https://en.wikipedia.org/wiki/Georg_Cantor">Cantor</a> defined a set to be countable if you can find a way to enumerate all of its elements, even if the enumeration never finishes. The natural numbers $\mathbb{N}$ are the standard example of a set with infinitely many elements that is still countable. The usual proof of the fact that the <a target="rationals" href="https://en.wikipedia.org/wiki/Rational_number">rationals</a> $\mathbb{Q}$ are countable is by Cantor's enumeration which is visualized below. The (positive) rationals are represented in a 2D grid as fractions where one axis is the numerator and the other the denominator. (The fractions in blue are not reduced and thus some numbers appear more than once, however this doesn't affect the countability result.) The enumeration is defined by picking up the fractions in a spiral fashion.
+    </p>
+    <div id="svgContainer" class="center"></div>
+    <h2>A non-visual proof</h2>
+    <p>Mathematically, the enumeration corresponds to finding a mapping from $\mathbb{N}$ to $\mathbb{Q}$ that visits all elements in $\mathbb{Q}$ at some point, i.e., it is surjective. For simplicity, let's only consider the non-negative rationals $\mathbb{Q}^+$. If we find a surjective mapping $f: \mathbb{N} \rightarrow \mathbb{Q}^+$, we can define the surjective mapping $f': \mathbb{N} \rightarrow \mathbb{Q}, x \mapsto \begin{cases}
+f(k) & \text{if } x=2k\\
+-f(k) & \text{if } x=2k+1
+\end{cases}$ proving the statement. Choose $f: \mathbb{N} \rightarrow \mathbb{Q}^+, x \mapsto \begin{cases}
+\frac{a}{b} & \text{if } x=2^a3^b\\
+0 & \text{otherwise}
+\end{cases}$ which is well-defined because each integer has a unique prime factorization, and for each $\frac{a}{b} \in \mathbb{Q}^+$ there is a pre-image $2^a3^b$, i.e., $f$ is surjective. Thus $|\mathbb{Q}| \leq |\mathbb{N}|$.</p>
+  </body>
+</html>

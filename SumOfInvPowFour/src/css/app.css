@@ -1,0 +1,21 @@
+.square{
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.firstColor{
+  fill: #ffffff;
+}
+
+.secondColor{
+  fill: #444;
+}
+
+.highlighted{
+	stroke-width: 3 !important;
+  	stroke: #ffa500;
+}
+
+.unhighlighted{
+  	stroke-width: 0;
+}

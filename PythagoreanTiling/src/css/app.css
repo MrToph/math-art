@@ -1,0 +1,35 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.element{
+  stroke: #000;
+  stroke-width: 1;
+}
+
+.axis{
+  stroke: #000000;
+  stroke-width: 2;
+  fill: none;
+}
+
+.dragRect{
+  stroke: #ff3232;
+  stroke-width: 2;
+  fill: none;
+  pointer-events: none;	/* otherwise this absorbs clicks for dragPoint */
+}
+
+.dragPoint{
+	stroke: #000000;
+	stroke-width: 2;
+	fill: white;
+}
+
+.type0{
+	fill: #fefefe;
+}
+
+.type1{
+	fill: #adadff
+}

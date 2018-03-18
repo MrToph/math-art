@@ -1,0 +1,27 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.txt{
+	font-size: 16pt;
+}
+
+.type0{
+	stroke: #000;
+	fill: #000;
+}
+
+.type1{
+	stroke: #444;
+	fill: #444;
+}
+
+.type2{
+	stroke: #c00;
+	fill: #c00;
+}
+
+.type3{
+	stroke: #00c;
+	fill: #00c;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Sum of Inverse Powers of Four</h1>
+    </header>
+    <div class="math center">$\frac{1}{4} + \frac{1}{16} + \frac{1}{64} + \ldots = \frac{1}{3} $</div>
+    <div id="svgContainer" class="center"></div>
+    <h2>Explanation:</h2>
+    <p>
+     The full area of the square is $\square$. The sum of the black squares is thus $\sum_n \blacksquare = \sum_n \frac{1}{4^n} \square$. </br>
+     We can give an alternative description in terms of the orange highlighted area $\definecolor{colorYellow}{RGB}{255,165,0}\textcolor{colorYellow}{\boxplus}$ (mouse over the above picture). Then $\sum_n \blacksquare = \sum_n \frac{1}{3} \textcolor{colorYellow}{\boxplus}$, and combining these equations, we get $\sum_n \frac{1}{4^n} \square = \sum_n \frac{1}{3} \textcolor{colorYellow}{\boxplus} = \frac{1}{3} \sum_n \textcolor{colorYellow}{\boxplus}$, but $\sum_n \textcolor{colorYellow}{\boxplus} = \square$, which concludes the proof $(\sum_n \frac{1}{4^n} \square = \frac{1}{3} \ \square)$.
+    </p>
+  </body>
+</html>

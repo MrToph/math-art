@@ -1,0 +1,23 @@
+.element{
+  stroke: #000000;
+  stroke-width: 1;
+  fill: none;
+}
+
+.axis{
+  stroke: #000000;
+  stroke-width: 1;
+  fill: none;
+}
+
+.outerTxt{
+	font-size: 16pt;
+}
+
+.firstColor{
+	fill: #ff3232;
+}
+
+.secondColor{
+	fill: #3232ff;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Shortest Cut in an Equilateral Triangle</h1>
+    </header>
+    <p>Let's say you want to cut an equilateral triangle into two pieces such that both of them have the same size. The goal is to minimize the length of the cut (which doesn't have to be straight and can be cut in an arbitrary way). Here are some possible ways to cut the triangle:
+    </p>
+    <div id="svgContainer" class="center"></div>
+    <div class="stepBtnContainer center">
+      <button type="submit" class="stepBtn leftBtn" id="leftBtn1" data-layer="1" onclick="stepper.onBackward(this.dataset.layer)"></button><button type="submit" class="stepBtn rightBtn" id="rightBtn1" data-layer="1" onclick="stepper.onForward(this.dataset.layer)"></button>
+    </div>
+    <h2>Solution</h2>
+    <p>Notice, how a hexagon are just six equilateral triangles (start the animation). We can reduce the above problem to finding the shape of minimum perimeter that splits a hexagon into two parts of equal area.  For a given area, the shape with minimum circumference <a href="https://en.wikipedia.org/wiki/Isoperimetric_inequality">is always the circle</a>, so in the original problem the arc is the shortest cut for the triangle.</p>
+  </body>
+</html>

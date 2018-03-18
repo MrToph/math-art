@@ -1,0 +1,20 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.element{
+  /*stroke-width: 1;*/
+  fill:none;
+}
+
+.type0{
+	stroke: #ff3232;
+}
+
+.type1{
+	stroke: #ccc;
+}
+
+.color3{
+	fill: #3232ff;
+}

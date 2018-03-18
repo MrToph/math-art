@@ -1,0 +1,17 @@
+path {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.innerTriangle {
+  stroke: #000000; 
+  fill: #fffa00;
+  stroke-width: 1;
+}
+
+.dragpoint{
+  stroke: #000000; 
+  fill: #fffa00;
+  stroke-width: 1;
+}

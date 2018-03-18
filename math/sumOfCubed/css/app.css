@@ -1,0 +1,48 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.element{
+  stroke: #000;
+  stroke-width: 0.5;
+  fill:none;
+}
+
+.thickBorder {
+  stroke: #000 !important;
+  stroke-width: 4 !important;
+}
+
+.axis{
+  stroke: #000000;
+  stroke-width: 1;
+  fill: none;
+}
+
+.outerTxt{
+	font-size: 16pt;
+}
+
+.color1{
+	fill: #ff3232;
+}
+
+.color2{
+	fill: #329932;
+}
+
+.color3{
+	fill: #3232ff;
+}
+
+.color4{
+	fill: #8A2BE2;
+}
+
+.color5{
+	fill: #fffa00;
+}
+
+.color6{
+	fill: #ffa500;
+}

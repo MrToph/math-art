@@ -1,0 +1,15 @@
+#svgContainer {
+	max-width: 640px !important;
+}
+
+.element{
+	stroke: none;
+}
+
+.type0{
+	fill: #ccc;
+}
+
+.type1{
+	fill: #f66;
+}

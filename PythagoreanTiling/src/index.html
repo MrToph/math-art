@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Pythagorean Tiling</h1>
+    </header>
+    <p>A pythagorean tiling is <a href="http://mathart.xyz/portfolio/items/pythagoras/">another beautiful way</a> to prove Pythagoras' theorem. It also shows that every plane can be tiled by two squares of arbitrary size.</p>
+    <div class="math center">$\definecolor{colorRed}{RGB}{255,50,50}\definecolor{colorGreen}{RGB}{50,205,50}\definecolor{colorBlue}{RGB}{50,50,255}\definecolor{colorOrange}{RGB}{255,165,0} 
+    a^2 + \textcolor{colorBlue}{b^2} = \textcolor{red}{c^2}$</div>
+    <div id="svgContainer" class="center"></div>
+    <h2>Explanation:</h2>
+    <p>If the side length of a white square $\square$ is $a$, the side length of a blue square $\textcolor{colorBlue}{\square}$ is $\textcolor{colorBlue}{b}$, then we construct a red square $\textcolor{colorRed}{\square}$ with side length $\textcolor{colorRed}{c}$ which is the hypotenuse of a right triangle with side lengths $a$ and $\textcolor{colorBlue}{b}$. See drawing on the left. In order to show $a^2 + \textcolor{colorBlue}{b^2} = \textcolor{red}{c^2}$, we argue that the red square comprises exactly one white square and one blue square. The image on the right shows one possible way to place the red square on the tiling, such that it cuts the tiling into parts that can easily be rearranged to yield a white and a blue square. 
+    There are many more interesting ways to place the red triangle, which you can try out in the above visualization. You can also change the ratio between the side lengths $a$ and $\textcolor{colorBlue}{b}$ by sliding the dot on the top right of the visualization. </p>
+    <a href="mama">LINK TO THE PICTURE HERE</a>
+  </body>
+</html>

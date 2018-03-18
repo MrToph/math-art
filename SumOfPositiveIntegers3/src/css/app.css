@@ -1,0 +1,18 @@
+.square{
+  fill: #ff3232;
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.triangle{
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+.lowerTriangle{
+  fill: #ff3232;
+}
+
+.upperTriangle{
+  fill: #3232ff;
+}

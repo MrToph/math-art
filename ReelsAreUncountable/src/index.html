@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Reels are uncountable</h1>
+    </header>
+    <p>We already showed that <a href="http://mathart.xyz/portfolio/items/rationals-are-countable/">the rationals are countable</a>, now we will show that the reels $\mathbb{R}$ are <i>uncountable</i>, meaning there is no one-to-one correspondence between the natural numbers $\mathbb{N}$ and the reels $\mathbb{R}$. The beautiful math proof is a classical example of <a href="https://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument">Cantor's Diagonal Argument</a> and shows that you cannot enumerate the reels by a proof of contradiction. We will first prove the that the interval $(0,1)$ consisting of all reels between $0$ and $1$ (exclusive) is uncountable, and then generalize it to all reels.
+    So assume $(0,1)$ was countable, then there is a one-to-one correspondence $f:\mathbb{N} \rightarrow (0,1)$. This means we can enumerate the reels and write them in a table by writing $f(i)=.d_1 d_2 d_3 d_4 d_5 \ldots$ in the $i$-th row. Unfortunately, there's a bit of ambiguity in the way we represent numbers that we need to resolve: Notice how $.5 = .49999\ldots, 0.1234 = 0.1233999\ldots$ are the same numbers with a different representation. To circumvent this we use the convention that the representation <i>not</i>containing the periodic $9$s is chosen whenever there is ambiguity. We need to find a number in $(0,1)$ that is not on the table to arrive at the contradiction that $f$ can indeed not be a one-to-one mapping.
+    We choose the number that consists of the digits of the diagonal of the table, and then negate each digit by choosing a digit at random that differs from the current one, and from $0$ and $9$. (We need it to be different from $0$ and $9$ to make sure the number we create is not just a different representation of an already existing one.)
+    </p>
+    <div id="svgContainer" class="center"></div>
+    <div class="stepBtnContainer center">
+      <button type="submit" class="stepBtn leftBtn" id="leftBtn1" data-layer="1" onclick="stepper.onBackward(this.dataset.layer)"></button><button type="submit" class="stepBtn rightBtn" id="rightBtn1" data-layer="1" onclick="stepper.onForward(this.dataset.layer)"></button>
+    </div>
+    <p>The resulting number is in $(0,1)$, because it is neither $0=.00000\ldots$ nor $1=.99999\ldots$ by the way we chose the digits. It also obliges our convention on not using periodic $9$s as the representation, and is thus <i>not</i> just a different representation of another number (like $0.49999\ldots$ is for $.5$). 
+    The number is not on the table: Every $f(i)$ is different from our number at the $i$-th position. This means that $f$ "misses" the number and is not one-to-one, concluding the proof by showing our assumption does not hold.</p>
+    <h2>Extending $(0,1)$ to $\mathbb{R}$</h2>
+    <p>The proof easily extends to all real numbers, by noticing that $(0,1)$ and $\mathbb{R}$ have the same size. We make use of the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions#Principal_values">tangent function</a> $\tan$ which is bijective in $\left(-\frac{\pi}{2},\frac{\pi}{2}\right) \rightarrow \mathbb{R}$. Then, $g: (0,1) \rightarrow \mathbb{R}, x \mapsto \tan\left(\left(x-\frac{1}{2} \right) \pi \right)$ is one-to-one.</p>
+    <h2>The reels $\mathbb{R}$ have the same cardinality as the plane $\mathbb{R}^2$</h2>
+    A nice intuition for this fact is given by space-filling curves, like the <a href="http://mathart.xyz/portfolio/items/hilbert-curve/" target="HilbertCurve">Hilbert Curve</a> or <a href="http://mathart.xyz/portfolio/items/peano-curve/" target="PeanoCurve">Peano Curve</a>.
+  </body>
+</html>

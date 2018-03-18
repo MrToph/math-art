@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <link rel="stylesheet" href="../../vis/css/vis.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- <meta name="viewport" content="width=650, user-scalable=yes"> -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, 
+        TeX: { extensions: ["color.js"] },
+        "CHTML-preview": {
+          disabled: true
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript" src="./build/all.min.js"></script>
+    <header>
+      <h1>Hilbert Curve</h1>
+    </header>
+    <p>The Hilbert Curve is one of the most known space-filling curves, meaning if you do enough iterations it will come arbitrary close to any point. This way you can get a mapping between 1D and 2D. They can also be defined in higher dimensions, for example, the folding of the <a href="http://www.wired.com/2009/10/fractal-genome/" target="_blank">human genome resembles a 3D Hilbert curve</a>.</p>
+    <div id="svgContainer" class="center"></div>
+    <div class="stepBtnContainer center">
+      <button type="submit" class="stepBtn leftBtn" id="leftBtn1" data-layer="1" onclick="stepper.onBackward(this.dataset.layer)"></button><button type="submit" class="stepBtn rightBtn" id="rightBtn1" data-layer="1" onclick="stepper.onForward(this.dataset.layer)"></button>
+    </div>
+    <h2>Source Code</h2>
+    <p>The algorithm to construct a Hilbert curve is given in <a href="http://www.eurasip.org/Proceedings/Eusipco/Eusipco1998/sessions/T%20A/TA%20P-7/487/spacefil1.pdf" target="_blank">this paper</a>.</p>
+    <script src="https://gist.github.com/MrToph/a264c8eec939f335e8cbe8399572d9af.js"></script>
+  </body>
+</html>

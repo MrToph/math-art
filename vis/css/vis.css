@@ -1,0 +1,98 @@
+#svgContainer {
+  max-width: 960px;
+  max-height: 640px;
+}
+
+.svgOuterRect {
+  fill: none;
+  pointer-events: all;
+  stroke: #000;
+  stroke-width: 0;
+}
+
+#canvasContainer {
+  max-width: 960px;
+}
+
+#canvasContainer > canvas {
+  width: 100%;
+}
+
+.math {
+  font-size: 1.5vw;
+  /*border: 1px solid red;*/
+}
+
+.mathFixedHeight {
+  height: 2.5vw;
+}
+
+.clear
+{
+  clear: both;
+}
+
+button {
+  margin: 0 auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.stepBtnContainer{
+  max-width: 256px;
+  max-height: 128px;
+  height: 128px;
+}
+
+.stepBtn {
+  width: 128px;
+  height: 128px;
+
+  float: left;
+  background-size: 100%; /* To fill the dimensions of container (button), or */
+  border: 0;
+  outline: none;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px;
+}
+
+.leftBtn {
+  background:transparent url('../img/left-arrow.png') no-repeat 0 0;
+}
+
+.leftBtn:hover {
+  background:transparent url('../img/left-arrow.png') no-repeat 0 -128px;
+}
+
+.leftBtn:disabled {
+  background:transparent url('../img/left-arrow.png') no-repeat 0 -256px;
+}
+
+.rightBtn {
+  background:transparent url('../img/right-arrow.png') no-repeat 0 0;
+}
+
+.rightBtn:hover {
+  background:transparent url('../img/right-arrow.png') no-repeat 0 -128px;
+}
+
+.rightBtn:disabled {
+  background:transparent url('../img/right-arrow.png') no-repeat 0 -256px;
+}
+
+svg {
+  /*background-color: #f0f0f0;*/
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  margin: 0 auto;
+  display: block; /* is inline by default */
+}
